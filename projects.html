@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cyber Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap'); /* Hacker-style font */
+
+        body {
+            background-color: black;
+            color: #0f0;
+            margin: 0;
+            padding: 0;
+            font-family: 'Share Tech Mono', monospace;
+            overflow: hidden; /* Prevents scrolling */
+        }
+
+        /* Matrix Rain Effect */
+        .matrix-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            display: flex;
+        }
+
+        .matrix-column {
+            position: relative;
+            width: 2%;
+            font-size: 16px;
+            text-align: center;
+            color: #0f0;
+            text-shadow: 0 0 5px #0f0;
+            opacity: 0.8;
+            animation: matrixRain linear infinite;
+        }
+
+        @keyframes matrixRain {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Header */
+        #header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 2px solid #0f0;
+            padding: 15px 0;
+            z-index: 100;
+        }
+
+       #header li {
+    padding: 10px 15px;
+    display: inline-block;
+    list-style-type: none;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #008000;  
+    color: #00cc00; 
+    text-shadow: 0 0 5px #006600; 
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+    #header li:hover {
+    background-color: #00aa00; 
+    color: #000;
+    box-shadow: 0 0 10px #008000;
+}
+
+        #header li a {
+            color: #0f0;
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 100px 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-container" id="matrix"></div> <!-- Matrix Background -->
+
+    <section id="header">
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-me.html">About Me</a></li>
+        </nav>
+    </section>
+
+    <section class="content">
+        <p>Working on this</p>
+    </section>
+
+    <script>
+        const matrixContainer = document.getElementById("matrix");
+        const columns = 50; // Number of columns
+        const speed = 5; // Speed of animation
+
+        for (let i = 0; i < columns; i++) {
+            const column = document.createElement("div");
+            column.classList.add("matrix-column");
+            column.style.left = `${(i / columns) * 100}%`;
+            column.style.animationDuration = `${Math.random() * speed + 2}s`;
+            column.innerHTML = generateRandomText();
+            matrixContainer.appendChild(column);
+        }
+
+        function generateRandomText() {
+            const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            let text = "";
+            for (let i = 0; i < 30; i++) { // Number of characters per column
+                text += chars[Math.floor(Math.random() * chars.length)] + "<br>";
+            }
+            return text;
+        }
+    </script>
+</body>
+</html>
